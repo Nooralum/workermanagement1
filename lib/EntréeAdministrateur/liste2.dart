@@ -2,10 +2,7 @@ class ToDo{
   String? id;
   String? Text;
   String? tache;
-
-
-
-
+  
 ToDo({
    required this.id,
    required this.Text,
@@ -14,9 +11,7 @@ ToDo({
 
  static List<ToDo> todolist(){
   return [
-    ToDo(id: '01', Text: 'Johanna Shein', tache: '',),
-    ToDo(id: '02', Text: 'Awa konaté', tache: '',),
-   
+    ToDo(id: '01', Text: 'Awa konaté', tache: 'ramassage',),
   ];
 
  }

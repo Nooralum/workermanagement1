@@ -4,6 +4,7 @@ import 'package:workermanagement1/Entr%C3%A9eAdministrateur/listeItem2.dart';
 import 'package:workermanagement1/commons/collapseListTile.dart';
 import 'package:workermanagement1/model/navigation.dart';
 
+
 class Home2 extends StatefulWidget {
   Home2({super.key});
 
@@ -12,10 +13,16 @@ class Home2 extends StatefulWidget {
 }
 
 class _Home2State extends State<Home2> with SingleTickerProviderStateMixin {
+   
+  List<String> list = <String>['Item1', 'Item2', 'Item3', 'Item4'];
+  String? selectedItem = '';
+ 
+
+
   final maList = ToDo.todolist();
   List<ToDo> search = [];
   final monController = TextEditingController();
-  final monController2 = TextEditingController();
+
 
   double maxWidth = 80;
   double minWidth = 220;
@@ -105,43 +112,52 @@ class _Home2State extends State<Home2> with SingleTickerProviderStateMixin {
                         return AlertDialog(
                           content: Container(
                             width: 200,
-                            height: 300,
+                            height: 350,
                             child: Column(
                               children: [
                                 TextField(
                                      controller: monController,
-                                     decoration: InputDecoration(
+                                     decoration: const InputDecoration(
                                       hintText: 'Nom & Prénom',
                                     ),
                                   ),
-                                   TextField(
-                                     controller: monController2,
+                                   const TextField(
                                      decoration: InputDecoration(
                                       hintText: 'email',
                                     ),
                                   ),
-                                  TextField(
+                                  const TextField(
                                      decoration: InputDecoration(
                                       hintText: 'ville',
                                     ),
                                   ),
-                                  TextField(
+                                  const TextField(
                                      decoration: InputDecoration(
                                       hintText: 'téléphone',
                                     ),
                                   ),
-                                  TextField(
-                                     controller: monController2,
-                                     decoration: InputDecoration(
-                                      hintText: 'Tâches',
-                                    ),
+                                  SizedBox(
+                                    width: 300,
+                                    child: DropdownButtonFormField<String>(
+                                      hint: Text('Tâche'),
+                                      items: list
+                                          .map((list) => DropdownMenuItem<String>(
+                                              value: list,
+                                              child: Text(list, style: TextStyle(fontSize: 24))
+                                        )).toList(), 
+                                        onChanged: (list) => setState((){
+                                          selectedItem = list;
+                                        } ),
+                                      ),
                                   ),
+                                  
 
                                  Row(
                                    children: [
+                                    Spacer(),
                                      TextButton(
                                       onPressed: (){
-                                          _addItem(monController.text, monController2.text);
+                                          _addItem(monController.text, selectedItem);
                                           Navigator.of(context).pop();
                                       }, 
                                       child: const Text(
@@ -204,14 +220,13 @@ class _Home2State extends State<Home2> with SingleTickerProviderStateMixin {
       });
     }
 
-  void _addItem(String todo, String matache){
+  void _addItem(String todo, String? matache){
     setState(() {
       maList.add(ToDo(
       id: DateTime.now().millisecondsSinceEpoch.toString(), 
     Text: todo, tache: matache));
     });
     monController.clear();
-    monController2.clear();
   }
 
   void _research(String enteredKeyword){

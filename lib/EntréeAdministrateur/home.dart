@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:workermanagement1/Entr%C3%A9eAdministrateur/GestionT%C3%A2ches/home1.dart';
 import 'package:workermanagement1/Entr%C3%A9eAdministrateur/gestiontravailleur.dart';
 import 'package:workermanagement1/GestionAdmin/CreerAdmin.dart';
 import 'package:workermanagement1/Voir%20bilan/home.dart';
@@ -45,7 +46,7 @@ class _accueilAdminState extends State<accueilAdmin>  with SingleTickerProviderS
               SizedBox(height: 50,),
               shadow(image1: Image.asset("assets/icons/gestion.png", width: 42.85, height: 42.51, ), text: Text('\r \r Gestion Des \f \r Travailleurs', style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),), taper: Home2(),),
               SizedBox(height: 50,),
-              shadow(image1: Image.asset('assets/icons/bilan.png', width: 42.85, height: 42.51,), text: Text('\r \r Gestion des \f \r \r \r  tâches', style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold), ), taper: bilan(),),
+              shadow(image1: Image.asset('assets/icons/bilan.png', width: 42.85, height: 42.51,), text: Text('\r \r Gestion des \f \r \r \r  tâches', style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold), ), taper: tache(),),
               SizedBox(height: 50,),
               shadow(image1: Image.asset('assets/icons/payement.png', width: 42.85, height: 42.51,), text: Text('\r  \r Effectuer \f \r \r payement', style: TextStyle(color: Colors.black, fontSize: 17, fontWeight: FontWeight.bold),), taper: entree(),),
               
