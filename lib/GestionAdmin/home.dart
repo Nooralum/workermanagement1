@@ -38,144 +38,146 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor:  Colors.green,
-      body: Stack(
-        children: [
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-            child: Column(
-              children: [
-                searchBox(),
-                Expanded(
-                  child: ListView(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 100.0),
-                        child: Container(
-                          margin: const EdgeInsets.only(
-                            top: 30,
-                            bottom: 20,
-                            ),
-                            child: const Text(
-                              "Liste Administrateurs",
-                              style: TextStyle(
-                                fontSize: 25,
-                                fontWeight: FontWeight.w500,
+      body: SingleChildScrollView(
+        child: Stack(
+          children: [
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+              child: Column(
+                children: [
+                  searchBox(),
+                  Expanded(
+                    child: ListView(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 100.0),
+                          child: Container(
+                            margin: const EdgeInsets.only(
+                              top: 30,
+                              bottom: 20,
+                              ),
+                              child: const Text(
+                                "Liste Administrateurs",
+                                style: TextStyle(
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                          ),
+                        ),
+                        for(ToDo todo in search)
+                        ToDoItem(
+                          todo: todo,
+                          SupprimerItem: _deleteItem,
+                          ),
+                      
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Row(
+                children: [
+                  Container(
+                    width: 220,
+                    height: 50,
+                    margin: const EdgeInsets.only(
+                      bottom: 20,
+                    ),
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                   
+      
+                  ),
+                  Container(
+                    width: 50,
+                    height: 50,
+                    margin: const EdgeInsets.only(
+                      bottom : 20,
+                      right: 10,
+                      ),
+                      child: ElevatedButton(
+                        child: Text("+", style:TextStyle(fontSize: 40,),),
+                        onPressed: (){
+                         showDialog(
+                          barrierDismissible: false,
+                          context: context, builder: (context){
+                          return AlertDialog(
+                            content: Container(
+                              width: 200,
+                              height: 150,
+                              child: Column(
+                                children: [
+                                  TextField(
+                                       controller: monController,
+                                       decoration: InputDecoration(
+                                        hintText: 'Nom & Prénom',
+                                      ),
+                                    ),
+                                     TextField(
+                                       controller: monController2,
+                                       decoration: InputDecoration(
+                                        hintText: 'Code',
+                                      ),
+                                    ),
+      
+                                   Row(
+                                     children: [
+                                       TextButton(
+                                        onPressed: (){
+                                            _addItem(monController.text, monController2.text);
+                                        }, 
+                                        child: const Text(
+                                          'Valider',
+                                          style: TextStyle(
+                                            color: Colors.green,
+                                            fontSize: 20,
+                                          ),
+                                        )),
+      
+                                        TextButton(
+                                        onPressed: (){
+                                            Navigator.of(context).pop();
+                                        }, 
+                                        child: const Text(
+                                          'Annuler',
+                                          style: TextStyle(
+                                            color: Colors.green,
+                                            fontSize: 20,
+                                          ),
+                                        )),
+                                     ],
+                                   )
+                                ],
                               ),
                             ),
+      
+                          );
+                         });
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.blue,
+                          minimumSize: Size(60, 60),
+                          elevation: 10,
                         ),
-                      ),
-                      for(ToDo todo in search)
-                      ToDoItem(
-                        todo: todo,
-                        SupprimerItem: _deleteItem,
+      
                         ),
+      
                     
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Row(
-              children: [
-                Container(
-                  width: 220,
-                  height: 50,
-                  margin: const EdgeInsets.only(
-                    bottom: 20,
-                  ),
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                 
-
-                ),
-                Container(
-                  width: 50,
-                  height: 50,
-                  margin: const EdgeInsets.only(
-                    bottom : 20,
-                    right: 10,
                     ),
-                    child: ElevatedButton(
-                      child: Text("+", style:TextStyle(fontSize: 40,),),
-                      onPressed: (){
-                       showDialog(
-                        barrierDismissible: false,
-                        context: context, builder: (context){
-                        return AlertDialog(
-                          content: Container(
-                            width: 200,
-                            height: 150,
-                            child: Column(
-                              children: [
-                                TextField(
-                                     controller: monController,
-                                     decoration: InputDecoration(
-                                      hintText: 'Nom & Prénom',
-                                    ),
-                                  ),
-                                   TextField(
-                                     controller: monController2,
-                                     decoration: InputDecoration(
-                                      hintText: 'Code',
-                                    ),
-                                  ),
-
-                                 Row(
-                                   children: [
-                                     TextButton(
-                                      onPressed: (){
-                                          _addItem(monController.text, monController2.text);
-                                      }, 
-                                      child: const Text(
-                                        'Valider',
-                                        style: TextStyle(
-                                          color: Colors.green,
-                                          fontSize: 20,
-                                        ),
-                                      )),
-
-                                      TextButton(
-                                      onPressed: (){
-                                          Navigator.of(context).pop();
-                                      }, 
-                                      child: const Text(
-                                        'Annuler',
-                                        style: TextStyle(
-                                          color: Colors.green,
-                                          fontSize: 20,
-                                        ),
-                                      )),
-                                   ],
-                                 )
-                              ],
-                            ),
-                          ),
-
-                        );
-                       });
-                      },
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.blue,
-                        minimumSize: Size(60, 60),
-                        elevation: 10,
-                      ),
-
-                      ),
-
-                  
-                  ),
-               
-              ],
+                 
+                ],
+              ),
+      
             ),
-
-          ),
-           AnimatedBuilder(
-              animation: _animationController, 
-              builder: (context,widget) => getWidget(context, widget),
-           ),
-        ],
+             AnimatedBuilder(
+                animation: _animationController, 
+                builder: (context,widget) => getWidget(context, widget),
+             ),
+          ],
+        ),
       ),
     );
   }

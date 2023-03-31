@@ -35,34 +35,36 @@ class _CollapsingNavigationDrawerState
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.green,
-      body: Stack(
-        children: [
-          Column(
-            children: [
-              SizedBox(height: 60,),
-              const Padding(
-                padding: EdgeInsets.only(left: 60),
-                child: Text('Débuter votre Gestion', style: TextStyle(fontSize: 30),),
-                ),
-              SizedBox(height: 50,),
-              shadow(image1: Image.asset("assets/icons/gestion.png", width: 42.85, height: 42.51, ), text: Text('\r \r \r Gestion Administrateur', style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),), taper: todolist(),),
-              SizedBox(height: 50,),
-              shadow(image1: Image.asset('assets/icons/bilan.png', width: 42.85, height: 42.51,), text: Text('\r \r \r Voir bilan', style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold), ), taper: bilan(),),
-              SizedBox(height: 50,),
-              shadow(image1: Image.asset('assets/icons/settings.png', width: 42.85, height: 42.51,), text: Text('\r \r \r Parametre', style: TextStyle(color: Colors.black, fontSize: 17, fontWeight: FontWeight.bold),), taper: entree(),),
-              
-            ],
-          ),
-           AnimatedBuilder(
-              animation: _animationController, 
-              builder: (context,widget) => getWidget(context, widget),
-           ),
-
-           
-
-          
-        ],
-
+      body: SingleChildScrollView(
+        child: Stack(
+          children: [
+            Column(
+              children: [
+                SizedBox(height: 60,),
+                const Padding(
+                  padding: EdgeInsets.only(left: 60),
+                  child: Text('Débuter votre Gestion', style: TextStyle(fontSize: 30),),
+                  ),
+                SizedBox(height: 50,),
+                shadow(image1: Image.asset("assets/icons/gestion.png", width: 42.85, height: 42.51, ), text: Text('\r \r \r Gestion Administrateur', style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),), taper: todolist(),),
+                SizedBox(height: 50,),
+                shadow(image1: Image.asset('assets/icons/bilan.png', width: 42.85, height: 42.51,), text: Text('\r \r \r Voir bilan', style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold), ), taper: bilan(),),
+                SizedBox(height: 50,),
+                shadow(image1: Image.asset('assets/icons/settings.png', width: 42.85, height: 42.51,), text: Text('\r \r \r Parametre', style: TextStyle(color: Colors.black, fontSize: 17, fontWeight: FontWeight.bold),), taper: entree(),),
+                
+              ],
+            ),
+             AnimatedBuilder(
+                animation: _animationController, 
+                builder: (context,widget) => getWidget(context, widget),
+             ),
+      
+             
+      
+            
+          ],
+      
+        ),
       )
      
       
